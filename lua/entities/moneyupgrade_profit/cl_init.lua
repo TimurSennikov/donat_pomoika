@@ -28,7 +28,3 @@ function ENT:Think()
         self:SetFacing(false)
     end
 end
-
-function ENT:SetupDataTables()
-    self:NetworkVar("Bool", 0, "Facing")
-end
