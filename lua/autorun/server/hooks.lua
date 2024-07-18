@@ -147,7 +147,7 @@ function ChatCommands(ply, text)
     local splittedText = string.Explode('"', text)
     local spaceSplittedText = string.Explode(" ", text)
 
-    if spaceSplittedText[1] == "!changebalance" and ply:IsAdmin_Amper() then
+    if spaceSplittedText[1] == "!changebalance" and ply:IsSuperAdmin() then
         local amount = tonumber(spaceSplittedText[2])
 
         if ply:GetBalance() + amount >= 0 then
@@ -163,7 +163,7 @@ function ChatCommands(ply, text)
         end
 
         return ""
-    elseif splittedText[1] == "!changeplayermoney " and #splittedText == 3 and ply:IsAdmin_Amper() then
+    elseif splittedText[1] == "!changeplayermoney " and #splittedText == 3 and ply:IsSuperAdmin() then
         local toName = splittedText[2]
         local amount = tonumber(splittedText[3])
 

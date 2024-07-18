@@ -3,8 +3,10 @@ AddCSLuaFile("shared.lua")
 
 include("shared.lua")
 
-local LIMIT = 3000
 local PROFIT_LIMIT = 2
+
+local CAPACITY_LIMIT_INCREASE = 100
+local CAPACITY_LIMIT_DEFAULT = 3000
 
 local PAPER_LIMIT = 1000
 local PAPER_BOOSTER = 100
@@ -38,11 +40,12 @@ function ENT:Initialize()
     self:SetPaperAmount(1000)
     self:SetProfit(1)
     self:SetFacing(false)
+    self:SetCapacity(CAPACITY_LIMIT_DEFAULT)
 
     timer.Create(tostring(math.random(0,10000000000)), 1, 0, function()
         if IsValid(self) then
             local profit = self:GetProfit()
-            if self:GetMoneyAmount() < LIMIT then
+            if self:GetMoneyAmount() < self:GetCapacity() then
                 if self:GetPaperAmount() > 0 then
                     self:SetMoneyAmount(self:GetMoneyAmount() + profit)
                     ChangePaperAmount(self, -profit)
@@ -92,6 +95,12 @@ function ENT:Touch(ent_toucher)
                 ent_toucher:Remove()
                 ChangePaperAmount(self, PAPER_BOOSTER)
                 self:EmitSound(PAPER_INSERT_SOUND)
+            end
+        elseif ent_toucher:GetClass() == "moneyupgrade_capacity" then
+            if self:GetPreviousCollideEntity() != ent_toucher then
+                self:SetPreviousCollideEntity(ent_toucher)
+                ent_toucher:Remove()
+                self:SetCapacity(self:GetCapacity() + CAPACITY_LIMIT_INCREASE)
             end
         end
     end

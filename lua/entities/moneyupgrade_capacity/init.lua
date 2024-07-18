@@ -11,6 +11,8 @@ function ENT:Initialize()
 
     local p = self:GetPhysicsObject()
 
+    self:SetFacing(false)
+
     if IsValid(p) then
         p:Wake()
     end

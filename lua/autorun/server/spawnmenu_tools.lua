@@ -29,7 +29,7 @@ function BroadcastPrices()
 end
 
 net.Receive("ResetPrice", function(len, ply)
-    if ply:IsAdmin_Amper() then
+    if ply:IsSuperAdmin() then
         sql.Query('DELETE FROM prices_table WHERE name = "'.. net.ReadString() .. '"')
         BroadcastPrices()
     end
@@ -39,7 +39,7 @@ net.Receive("PricesRequest", function(len, ply)
 end)
 
 net.Receive("ChangePrice", function(len, ply)
-    if ply:IsAdmin_Amper() then
+    if ply:IsSuperAdmin() then
         local name = net.ReadString()
         local price = net.ReadInt(32)
 

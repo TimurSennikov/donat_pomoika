@@ -1,9 +1,5 @@
 local mt = FindMetaTable("Player")
 
-function mt:IsAdmin_Amper()
-    return self:GetUserGroup() == "superadmin"
-end
-
 function mt:GetBalance()
     return tonumber(self:GetPData("Balance_Amper", 0))
 end

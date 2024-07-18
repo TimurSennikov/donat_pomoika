@@ -15,4 +15,6 @@ function ENT:SetupDataTables()
     self:NetworkVar("Int", 4, "PaperAmount")
 
     self:NetworkVar("Bool", 5, "Facing")
+
+    self:NetworkVar("Int", 6, "Capacity")
 end

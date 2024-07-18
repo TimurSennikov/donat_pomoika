@@ -72,7 +72,7 @@ function spawnmenu.CreateContentIcon(type, pnl, data)
     function ic:OpenMenuExtra(menu)
         self:OldOpenMenuExtra_Amper(menu)
 
-        if LocalPlayer():GetUserGroup() == "superadmin" then -- серверные метафункции не сохраняются на клиенте, поэтому тут не вызвать Player:IsAdmin_Amper()?
+        if LocalPlayer():IsSuperAdmin() then
             menu:AddSpacer()
 
             menu:AddOption("Установить цену", function()
