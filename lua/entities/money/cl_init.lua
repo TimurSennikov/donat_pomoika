@@ -4,6 +4,7 @@ function ENT:Draw(flags)
     self:DrawModel(flags)
 
     local profit = self:GetProfit()
+    local paperAmount = self:GetPaperAmount()
 
     local pos = self:GetPos()
     local ang = self:GetAngles()
@@ -22,6 +23,10 @@ function ENT:Draw(flags)
             draw.RoundedBox(1, i * 1.1, 0, 10, 10, color)
         end
 
+        for i = 0, paperAmount / 15, 1 do
+            draw.RoundedBox(1, i * 1.1, 15, 10, 10, Color(255 - paperAmount, paperAmount, 0))
+        end
+
         draw.SimpleText(self:GetMoneyAmount() .. "$", "Default", 50, 70, Color(0, 255, 0))
     cam.End3D2D()
 end
@@ -32,4 +37,6 @@ function ENT:SetupDataTables()
 
     self:NetworkVar("Int", 2, "Profit")
     self:NetworkVar("Entity", 3, "PreviousCollideEntity")
+
+    self:NetworkVar("Int", 4, "PaperAmount")
 end
