@@ -1,4 +1,4 @@
-spawnmenu.oldCreateIcon = spawnmenu.oldCreateIcon or spawnmenu.CreateContentIcon
+spawnmenu.OldCreateIcon_Amper = spawnmenu.oldCreateIcon_Amper or spawnmenu.CreateContentIcon
 
 prices = {}
 
@@ -53,7 +53,7 @@ function spawnmenu.CreateContentIcon(type, pnl, data)
         end
     end
 
-    ic = spawnmenu.oldCreateIcon(type, pnl, data)
+    ic = spawnmenu.OldCreateIcon_Amper(type, pnl, data)
 
     if pricedTool then
         local icon = vgui.Create("DImage", ic)
@@ -67,10 +67,10 @@ function spawnmenu.CreateContentIcon(type, pnl, data)
         text:SetText(price .. "$")
     end
 
-    ic.s_OpenMenuExtra = ic.s_OpenMenuExtra or ic.OpenMenuExtra
+    ic.OldOpenMenuExtra_Amper = ic.OldOpenMenuExtra_Amper or ic.OpenMenuExtra
 
     function ic:OpenMenuExtra(menu)
-        self:s_OpenMenuExtra(menu)
+        self:OldOpenMenuExtra_Amper(menu)
 
         if LocalPlayer():GetUserGroup() == "superadmin" then -- серверные метафункции не сохраняются на клиенте, поэтому тут не вызвать Player:IsAdmin_Amper()?
             menu:AddSpacer()
