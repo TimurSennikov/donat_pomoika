@@ -88,6 +88,7 @@ function ProcessVehicleSpawn(ply, model, name)
                 return true
             else
                 ply:PrintMessage(HUD_PRINTTALK, "Вам не хватает " .. price - balance .. "$ на покупку ".. name .. ".")
+                return false
             end
         end
     end
