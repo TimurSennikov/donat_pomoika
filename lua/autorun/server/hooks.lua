@@ -75,6 +75,26 @@ function ProcessSENTSpawn(ply, class)
     return true
 end
 
+function ProcessVehicleSpawn(ply, model, name)
+    local prices = sql.Query("SELECT * FROM prices_table")
+
+    for k, v in pairs(prices) do
+        if v["name"] == name then
+            local balance = tonumber(ply:GetBalance())
+            local price = tonumber(v["price"])
+
+            if balance >= price then
+                ply:ChangeBalance(-price)
+                return true
+            else
+                ply:PrintMessage(HUD_PRINTTALK, "Вам не хватает " .. price - balance .. "$ на покупку ".. name .. ".")
+            end
+        end
+    end
+
+    return true
+end
+
 function ProcessDupe(data, time) -- не используется, можно удалить, оставил для себя.
     local prices = sql.Query("SELECT * FROM prices_table")
 
@@ -175,6 +195,8 @@ hook.Add("PlayerDeath", "PlayerDeathHook", ProcessKill)
 hook.Add("PlayerGiveSWEP", "WeaponBuyHook", ProcessWeaponGive)
 hook.Add("PlayerSpawnSWEP", "WeaponBuy-SpawnHook", ProcessSENTSpawn)
 hook.Add("PlayerSpawnSENT", "SENTBuy-SpawnHook", ProcessSENTSpawn)
+
+hook.Add("PlayerSpawnVehicle", "VehicleSpawn-BuyHook", ProcessVehicleSpawn)
 
 -- спавн на землю свепа - DONE
 -- перевод денег - DONE
