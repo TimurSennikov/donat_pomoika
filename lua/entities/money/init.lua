@@ -39,7 +39,6 @@ function ENT:Initialize()
     self:SetMoneyAmount(0)
     self:SetPaperAmount(1000)
     self:SetProfit(1)
-    self:SetFacing(false)
     self:SetCapacity(CAPACITY_LIMIT_DEFAULT)
 
     timer.Create(tostring(math.random(0,10000000000)), 1, 0, function()
@@ -60,6 +59,7 @@ end
 function ENT:OnDuplicated()
     self:SetMoneyAmount(0)
     self:SetProfit(1)
+    self:SetCapacity(CAPACITY_LIMIT_DEFAULT)
 end
 
 function ENT:Use(activator)
