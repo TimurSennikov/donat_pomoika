@@ -1,4 +1,4 @@
-spawnmenu.OldCreateIcon_Amper = spawnmenu.oldCreateIcon_Amper or spawnmenu.CreateContentIcon
+spawnmenu.OldCreateIcon_Amper = spawnmenu.OldCreateIcon_Amper or spawnmenu.CreateContentIcon
 
 prices = {}
 
