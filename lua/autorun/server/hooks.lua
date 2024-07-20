@@ -184,8 +184,6 @@ function ChatCommands(ply, text)
         end
 
         return ""
-    elseif text == "!resetmoney" then
-        ply:ChangeBalance(-ply:GetBalance())
     end
 end
 
@@ -198,8 +196,3 @@ hook.Add("PlayerSpawnSWEP", "WeaponBuy-SpawnHook", ProcessSENTSpawn)
 hook.Add("PlayerSpawnSENT", "SENTBuy-SpawnHook", ProcessSENTSpawn)
 
 hook.Add("PlayerSpawnVehicle", "VehicleSpawn-BuyHook", ProcessVehicleSpawn)
-
--- спавн на землю свепа - DONE
--- перевод денег - DONE
--- платный спавн на землю - DONE
--- пофиксить
