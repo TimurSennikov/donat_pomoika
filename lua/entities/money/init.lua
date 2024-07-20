@@ -5,8 +5,9 @@ include("shared.lua")
 
 local PROFIT_LIMIT = 2
 
-local CAPACITY_LIMIT_INCREASE = 100
+local CAPACITY_LIMIT_INCREASE = 3000
 local CAPACITY_LIMIT_DEFAULT = 3000
+local CAPACITY_LIMIT_MAX = 6000
 
 local PAPER_LIMIT = 1000
 local PAPER_BOOSTER = 100
@@ -96,7 +97,7 @@ function ENT:Touch(ent_toucher)
                 ChangePaperAmount(self, PAPER_BOOSTER)
                 self:EmitSound(PAPER_INSERT_SOUND)
             end
-        elseif ent_toucher:GetClass() == "moneyupgrade_capacity" then
+        elseif ent_toucher:GetClass() == "moneyupgrade_capacity" and self:GetCapacity() < CAPACITY_LIMIT_MAX then
             if self:GetPreviousCollideEntity() != ent_toucher then
                 self:SetPreviousCollideEntity(ent_toucher)
                 ent_toucher:Remove()
